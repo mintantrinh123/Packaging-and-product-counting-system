@@ -1,0 +1,44 @@
+A51 MACRO ASSEMBLER  TEST                                                                 01/09/2023 11:54:49 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\test.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE ..\test\test.asm SET(SMALL) DEBUG PRINT(.\Listings\test.lst) OBJECT(.\O
+                      bjects\test.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 0 
+0000                   2     main:
+0000 B2A0              3     cpl p2.0
+0002 1106              4     call DELAY_10ms
+0004 80FA              5     jmp main
+                       6     ;
+                       7     
+0006                   8     DELAY_10ms:
+0006 7F14              9                     mov R7,#20
+0008 7EFA             10     LOOP:   mov R6,#250
+000A DEFE             11                     DJNZ R6,$
+000C DFFA             12                     DJNZ R7,LOOP
+000E 22               13                     RET
+                      14             
+                      15     
+                      16     end
+A51 MACRO ASSEMBLER  TEST                                                                 01/09/2023 11:54:49 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY_10MS . . . .  C ADDR   0006H   A   
+LOOP . . . . . . .  C ADDR   0008H   A   
+MAIN . . . . . . .  C ADDR   0000H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

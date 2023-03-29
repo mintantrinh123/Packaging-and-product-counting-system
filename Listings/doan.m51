@@ -1,0 +1,307 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/09/2023  11:54:50  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\doan.obj, .\Objects\test.obj TO .\Objects\doan PRINT (.\Listings\doan.m51)
+
+
+
+
+PROGRAM RECURSIONS REMOVED FROM CALL TREE
+=========================================
++--> ?PR?_DELAY_MS?DOAN
+<--+ ?PR?QUET_NUT?DOAN
+
+
++--> ?PR?CAM_BIEN?DOAN
+<--+ ?PR?_DELAY_MS?DOAN
+
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\doan.obj (DOAN)
+  .\Objects\test.obj (TEST)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\doan (DOAN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0012H     UNIT         ?DT?DOAN
+            DATA    001AH     0002H     UNIT         _DATA_GROUP_
+                    001CH     0004H                  *** GAP ***
+            BIT     0020H.0   0000H.2   UNIT         ?BI?DOAN
+                    0020H.2   0000H.6                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     000FH     ABSOLUTE     
+* OVERLAP * CODE    0000H     0003H     ABSOLUTE     
+            CODE    000FH     00A0H     UNIT         ?PR?_QUET_LED?DOAN
+            CODE    00AFH     008CH     UNIT         ?C_C51STARTUP
+            CODE    013BH     008BH     UNIT         ?C?LIB_CODE
+            CODE    01C6H     0053H     UNIT         ?PR?QUET_NUT?DOAN
+            CODE    0219H     004CH     UNIT         ?PR?_DELAY_MS?DOAN
+            CODE    0265H     0025H     UNIT         ?PR?CAM_BIEN?DOAN
+            CODE    028AH     0017H     UNIT         ?C_INITSEG
+            CODE    02A1H     0008H     UNIT         ?PR?MAIN?DOAN
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2023  11:54:50  PAGE 2
+
+
+OVERLAY MAP OF MODULE:   .\Objects\doan (DOAN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?DOAN
+  +--> ?C_INITSEG
+
+?PR?MAIN?DOAN                  -----    -----
+  +--> ?PR?CAM_BIEN?DOAN
+  +--> ?PR?QUET_NUT?DOAN
+
+?PR?CAM_BIEN?DOAN              -----    -----
+  +--> ?PR?_QUET_LED?DOAN
+  +--> ?PR?_DELAY_MS?DOAN
+
+?PR?_DELAY_MS?DOAN             001AH    0002H
+  +--> ?PR?_QUET_LED?DOAN
+  +--> ?PR?QUET_NUT?DOAN
+
+?PR?QUET_NUT?DOAN              -----    -----
+  +--> ?PR?_QUET_LED?DOAN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\doan (DOAN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DOAN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        dem_ton_tof
+  B:0020H.0       PUBLIC        NN
+  B:00A0H.1       PUBLIC        giam
+  B:00A0H.0       PUBLIC        reset
+  C:02A1H         PUBLIC        main
+  D:0009H         PUBLIC        so_sp
+  D:000BH         PUBLIC        ma7doan
+  B:00A0H.2       PUBLIC        tang
+  C:0265H         PUBLIC        cam_bien
+  C:0222H         PUBLIC        _delay_ms
+  B:00A0H.3       PUBLIC        LED
+  C:0013H         PUBLIC        _quet_led
+  D:0015H         PUBLIC        lan_quet
+  B:00A0H.7       PUBLIC        led1
+  D:0016H         PUBLIC        i
+  B:00A0H.6       PUBLIC        led2
+  D:0018H         PUBLIC        j
+  B:00A0H.5       PUBLIC        led3
+  B:00A0H.4       PUBLIC        led4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2023  11:54:50  PAGE 3
+
+
+  B:0020H.1       PUBLIC        ncb_hn
+  B:00B0H.2       PUBLIC        coibao
+  C:01C6H         PUBLIC        quet_nut
+  B:0090H.0       PUBLIC        cb_hn
+  C:000FH         SYMBOL        L?0039
+  -------         PROC          L?0038
+  -------         ENDPROC       L?0038
+  C:000FH         SYMBOL        L?0039
+  -------         PROC          _QUET_LED
+  D:0002H         SYMBOL        so_sp
+  C:0013H         LINE#         25
+  C:0017H         LINE#         26
+  C:0017H         LINE#         27
+  C:0019H         LINE#         28
+  C:001FH         LINE#         29
+  C:001FH         LINE#         30
+  C:0021H         LINE#         31
+  C:0027H         LINE#         32
+  C:0027H         LINE#         33
+  C:003CH         LINE#         34
+  C:003EH         LINE#         35
+  C:003EH         LINE#         36
+  C:0044H         LINE#         37
+  C:0044H         LINE#         38
+  C:005CH         LINE#         39
+  C:005EH         LINE#         40
+  C:005EH         LINE#         41
+  C:0064H         LINE#         42
+  C:0064H         LINE#         43
+  C:007CH         LINE#         44
+  C:007EH         LINE#         45
+  C:007EH         LINE#         46
+  C:0084H         LINE#         47
+  C:0084H         LINE#         48
+  C:0095H         LINE#         49
+  C:0097H         LINE#         50
+  C:009AH         LINE#         51
+  C:009AH         LINE#         52
+  C:009BH         LINE#         54
+  C:009BH         LINE#         55
+  C:00A1H         LINE#         56
+  C:00A1H         LINE#         57
+  C:00A9H         LINE#         58
+  C:00ACH         LINE#         59
+  C:00AEH         LINE#         60
+  C:00AEH         LINE#         61
+  C:00AEH         LINE#         62
+  -------         ENDPROC       _QUET_LED
+  -------         PROC          L?0037
+  -------         ENDPROC       L?0037
+  -------         PROC          _DELAY_MS
+  D:001AH         SYMBOL        t
+  C:0222H         LINE#         64
+  C:0226H         LINE#         65
+  C:0226H         LINE#         66
+  C:0236H         LINE#         67
+  C:0236H         LINE#         68
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2023  11:54:50  PAGE 4
+
+
+  C:0249H         LINE#         69
+  C:024BH         LINE#         70
+  C:024DH         LINE#         71
+  C:0250H         LINE#         72
+  C:0253H         LINE#         73
+  C:0256H         LINE#         74
+  C:0260H         LINE#         75
+  C:0262H         LINE#         76
+  C:0264H         LINE#         77
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          CAM_BIEN
+  C:0265H         LINE#         78
+  C:0265H         LINE#         79
+  C:0265H         LINE#         80
+  C:0268H         LINE#         81
+  C:026BH         LINE#         82
+  C:026BH         LINE#         83
+  C:026DH         LINE#         84
+  C:026DH         LINE#         85
+  C:0273H         LINE#         86
+  C:0273H         LINE#         87
+  C:0275H         LINE#         88
+  C:027DH         LINE#         89
+  C:0286H         LINE#         90
+  C:0286H         LINE#         91
+  C:0286H         LINE#         93
+  C:0289H         LINE#         94
+  C:0289H         LINE#         95
+  C:0289H         LINE#         96
+  -------         ENDPROC       CAM_BIEN
+  -------         PROC          MAIN
+  C:02A1H         LINE#         98
+  C:02A1H         LINE#         99
+  C:02A1H         LINE#         100
+  C:02A1H         LINE#         101
+  C:02A1H         LINE#         102
+  C:02A4H         LINE#         103
+  C:02A7H         LINE#         104
+  -------         ENDPROC       MAIN
+  -------         PROC          QUET_NUT
+  C:01C6H         LINE#         107
+  C:01C6H         LINE#         108
+  C:01C6H         LINE#         109
+  C:01C9H         LINE#         110
+  C:01CCH         LINE#         111
+  C:01CCH         LINE#         112
+  C:01CFH         LINE#         113
+  C:01CFH         LINE#         114
+  C:01D1H         LINE#         115
+  C:01D9H         LINE#         116
+  C:01E2H         LINE#         117
+  C:01E2H         LINE#         118
+  C:01E2H         LINE#         119
+  C:01E5H         LINE#         120
+  C:01E5H         LINE#         121
+  C:01E5H         LINE#         122
+  C:01E8H         LINE#         123
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2023  11:54:50  PAGE 5
+
+
+  C:01E8H         LINE#         124
+  C:01EAH         LINE#         125
+  C:01F2H         LINE#         126
+  C:01FDH         LINE#         127
+  C:01FDH         LINE#         128
+  C:0202H         LINE#         129
+  C:0202H         LINE#         130
+  C:0202H         LINE#         131
+  C:0205H         LINE#         132
+  C:0205H         LINE#         133
+  C:0207H         LINE#         134
+  C:020CH         LINE#         135
+  C:020CH         LINE#         136
+  C:020DH         LINE#         138
+  C:020DH         LINE#         139
+  C:0216H         LINE#         140
+  C:0216H         LINE#         141
+  C:0218H         LINE#         142
+  C:0218H         LINE#         143
+  C:0218H         LINE#         144
+  -------         ENDPROC       QUET_NUT
+  -------         ENDMOD        DOAN
+
+  -------         MODULE        TEST
+  C:0006H         SYMBOL        DELAY_10MS
+  C:0008H         SYMBOL        LOOP
+  C:0000H         SYMBOL        MAIN
+  D:00A0H         SYMBOL        P2
+  C:0000H         LINE#         3
+  C:0002H         LINE#         4
+  C:0004H         LINE#         5
+  C:0006H         LINE#         9
+  C:0008H         LINE#         10
+  C:000AH         LINE#         11
+  C:000CH         LINE#         12
+  C:000EH         LINE#         13
+  -------         ENDMOD        TEST
+
+  -------         MODULE        ?C?SIDIV
+  C:013BH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?UIDIV
+  C:0171H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?_DELAY_MS?DOAN
+    CALLER:  ?PR?QUET_NUT?DOAN
+
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?CAM_BIEN?DOAN
+    CALLER:  ?PR?_DELAY_MS?DOAN
+
+*** WARNING L5: CODE SPACE MEMORY OVERLAP
+    FROM:    0000H
+    TO:      000EH
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2023  11:54:50  PAGE 6
+
+
+
+Program Size: data=29.2 xdata=0 code=684
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

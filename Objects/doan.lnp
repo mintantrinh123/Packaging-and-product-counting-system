@@ -1,0 +1,4 @@
+".\Objects\doan.obj",
+".\Objects\test.obj" 
+TO ".\Objects\doan" 
+PRINT(".\Listings\doan.m51")

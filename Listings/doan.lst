@@ -1,0 +1,172 @@
+C51 COMPILER V9.60.0.0   DOAN                                                              01/09/2023 11:54:49 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DOAN
+OBJECT MODULE PLACED IN .\Objects\doan.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE doan.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\doan
+                    -.lst) TABS(2) OBJECT(.\Objects\doan.obj)
+
+line level    source
+
+   1          #include "AT89X51.h"
+   2          const char ma7doan[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90};
+   3          #define p_led P0
+   4          sbit led1 = P2^7;
+   5          sbit led2 = P2^6;
+   6          sbit led3 = P2^5;
+   7          sbit led4 = P2^4;
+   8          sbit LED = P2^3;
+   9          unsigned char lan_quet=0;
+  10          unsigned char dem_ton_tof=0;
+  11          unsigned int so_sp;
+  12          unsigned int i,j;
+  13          sbit cb_hn = P1^0; // Cam bien hong ngoai
+  14          bit ncb_hn=0; // Ngan cam bien hong ngoai
+  15          sbit tang = P2^2; // Nut tang
+  16          sbit giam = P2^1; // Nut giam
+  17          sbit reset = P2^0; // Nut reset
+  18          bit NN = 0;
+  19          sbit coibao = P3^2;
+  20          void quet_nut();
+  21          void cam_bien();
+  22          //======================================== 
+  23          #define t_on 4
+  24          #define t_of 4
+  25          void quet_led(so_sp) // Ham quet led
+  26          {
+  27   1        dem_ton_tof++;  
+  28   1         if(dem_ton_tof==t_on)
+  29   1        {
+  30   2            lan_quet++;
+  31   2            if(lan_quet==1)
+  32   2            {
+  33   3                p_led=(ma7doan[so_sp/1000%10]);
+  34   3                led1=0;
+  35   3            }
+  36   2            if(lan_quet==2)
+  37   2            {
+  38   3                p_led=(ma7doan[so_sp/100%10]);
+  39   3                led2=0;
+  40   3            }
+  41   2            if(lan_quet==3)
+  42   2            {
+  43   3                p_led=(ma7doan[so_sp/10%10]);
+  44   3                led3=0;
+  45   3            }
+  46   2            if(lan_quet==4)
+  47   2            {
+  48   3                p_led=(ma7doan[so_sp/1%10]);
+  49   3                led4=0;
+  50   3                lan_quet=0;
+  51   3            }
+  52   2        }
+  53   1        else
+  54   1        {
+C51 COMPILER V9.60.0.0   DOAN                                                              01/09/2023 11:54:49 PAGE 2   
+
+  55   2          if(dem_ton_tof==t_on+t_of)
+  56   2          {
+  57   3              led1=led2=led3=led4=1;
+  58   3              p_led=0xff;
+  59   3              dem_ton_tof=0; 
+  60   3          }
+  61   2        }
+  62   1      }
+  63          //======================================== 
+  64          void delay_ms(unsigned int t) // Ham delay
+  65          {
+  66   1        for(i=0;i<t;i++)//Ham tre 1ms
+  67   1            {
+  68   2               for(j=0;j<50;j++);
+  69   2               LED=0;
+  70   2               coibao=0;
+  71   2               quet_led(so_sp);
+  72   2               quet_nut();
+  73   2               cam_bien();
+  74   2            }
+  75   1            LED=1;
+  76   1            coibao=1;
+  77   1      }
+  78          void cam_bien() //Ham cam bien
+  79          {
+  80   1        quet_led(so_sp);
+  81   1        if(cb_hn==1)
+  82   1        {
+  83   2          ncb_hn=1; // Bao co vat can chan ngan
+  84   2        }
+  85   1        if(cb_hn==0&&ncb_hn==1)
+  86   1        {
+  87   2          ncb_hn=0; // Bao vat da di ngan qua
+  88   2          so_sp++;
+  89   2          if(so_sp>9999)
+  90   2          {
+  91   3            so_sp=0;
+  92   3            
+  93   3            delay_ms(5000);
+  94   3          }
+  95   2        }
+  96   1      }
+  97          //======================================== 
+  98          void main()  //chuong trinh chinh
+  99          {
+ 100   1        while(1) // Vong lap vo han
+ 101   1        {
+ 102   2          cam_bien();
+ 103   2          quet_nut();
+ 104   2        }
+ 105   1      }
+ 106          //======================================== 
+ 107          void quet_nut() //Ham quet nut
+ 108          {
+ 109   1        quet_led(so_sp);
+ 110   1        if(NN==1) // Kiem tra nut nhan nn = 1
+ 111   1        {
+ 112   2          if(tang==0)//Nut tang
+ 113   2          {
+ 114   3            NN=0; // Bao da nhan nut
+ 115   3            so_sp++;
+ 116   3            if(so_sp>9999)
+C51 COMPILER V9.60.0.0   DOAN                                                              01/09/2023 11:54:49 PAGE 3   
+
+ 117   3            {
+ 118   4              so_sp=0;
+ 119   4              delay_ms(5000);
+ 120   4            }
+ 121   3          }
+ 122   2          if(giam==0) // Nut giam
+ 123   2          {
+ 124   3            NN=0; // Bao da nhan nut
+ 125   3            so_sp--;
+ 126   3            if(so_sp>9999)
+ 127   3            {
+ 128   4              so_sp=0;
+ 129   4            }
+ 130   3          }
+ 131   2          if(reset==0)//Nut reset
+ 132   2          {
+ 133   3            NN=0; // Bao da nhan nut
+ 134   3            so_sp=0;
+ 135   3          }
+ 136   2        }
+ 137   1        else 
+ 138   1        {
+ 139   2          if(tang==1&&giam==1&&reset==1)
+ 140   2          {
+ 141   3            NN=1;
+ 142   3          }
+ 143   2        }
+ 144   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    364    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
